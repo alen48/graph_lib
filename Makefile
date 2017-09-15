@@ -2,7 +2,7 @@ OBJS = main.o graph.o
 CC = g++
 VER = -std=c++14
 DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
+CFLAGS = -Wall -Werror -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
 graphlib : $(OBJS)
@@ -15,4 +15,4 @@ graph.o : graph.h graph.cc
 	$(CC) $(VER) $(CFLAGS) graph.cc
 
 clean:
-	rm -f *.o *~ graph
+	rm -f *.o *~ graphlib
