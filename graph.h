@@ -4,6 +4,8 @@
 #include <string>
 #include <algorithm>
 
+enum GraphType {UNDIRECTED, DIRECTED, HYPER};
+
 namespace gSpace
 {
 	class Vertex;
@@ -21,15 +23,15 @@ namespace gSpace
 				destination = v2;
 				distance = dist;
 			}
-			Vertex *getSource()
+			Vertex *getSource(void)
 			{
 				return source;
 			}
-			Vertex *getDestination()
+			Vertex *getDestination(void)
 			{
 				return destination;
 			}
-			int getDistance()
+			int getDistance(void)
 			{
 				return distance;
 			}
@@ -50,11 +52,11 @@ namespace gSpace
 				Edge newEdge(this, v, dist);
 				edges.push_back(newEdge);
 			}
-			std::string getName()
+			std::string getName(void)
 			{
 				return name;
 			}
-			std::vector<Edge> getEdges()
+			std::vector<Edge> getEdges(void)
 			{
 				return edges;
 			}
@@ -64,23 +66,19 @@ namespace gSpace
 class Graph
 {
 	private:
+		GraphType type;
 		std::vector<gSpace::Vertex*> vertices;
 	public:
-		Graph() {}
-		void insert(gSpace::Vertex *v)
+		Graph()
 		{
-			vertices.push_back(v);
+			type = DIRECTED;	
 		}
-		int numVertices()
+		Graph(GraphType typeX)
 		{
-			return vertices.size();
+			type = typeX;
 		}
-		int numEdges()
-		{
-			int count = 0;
-			for (std::vector<gSpace::Vertex*>::iterator it = vertices.begin(); it != vertices.end(); it++) {
-				count += ((*it)->getEdges()).size();
-			}
-			return count;
-		}
+		GraphType getType(void);
+		void insert(gSpace::Vertex *v);
+		int numVertices(void);
+		int numEdges(void);
 };

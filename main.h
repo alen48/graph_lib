@@ -1,5 +1,4 @@
 #include <fstream>
-
 std::ofstream logFile("logs");
 std::ofstream outFile("outputs");
 
