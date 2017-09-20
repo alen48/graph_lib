@@ -4,30 +4,38 @@
 #include <string>
 #include <algorithm>
 
-enum GraphType {UNDIRECTED, DIRECTED, HYPER};
+enum GraphType {UNDIRECTED, DIRECTED};
 
 namespace gSpace
 {
-	class Vertex;
+	class Vertex
+	{
+		private:
+			std::string name;
+		public:
+			Vertex(std::string id) : name(id) {}
+			std::string getName(void)
+			{
+				return name;
+			}
+	};
 
 	class Edge
 	{
 		private:
-			Vertex *source;
-			Vertex *destination;
+			Vertex& source;
+			Vertex& destination;
 			int distance;
 		public:
-			Edge(Vertex *v1, Vertex *v2, int dist)
+			Edge(Vertex& v1, Vertex& v2, int dist) : source(v1), destination(v2)
 			{
-				source = v1;
-				destination = v2;
 				distance = dist;
 			}
-			Vertex *getSource(void)
+			Vertex& getSource(void)
 			{
 				return source;
 			}
-			Vertex *getDestination(void)
+			Vertex& getDestination(void)
 			{
 				return destination;
 			}
@@ -36,49 +44,22 @@ namespace gSpace
 				return distance;
 			}
 	};
-
-	class Vertex
-	{
-		private:
-			std::string name;
-			std::vector<Edge> edges;
-		public:
-			Vertex(std::string id)
-			{
-				name = id;
-			}
-			void addEdge(Vertex *v, int dist)
-			{
-				Edge newEdge(this, v, dist);
-				edges.push_back(newEdge);
-			}
-			std::string getName(void)
-			{
-				return name;
-			}
-			std::vector<Edge> getEdges(void)
-			{
-				return edges;
-			}
-	};
 }
 
 class Graph
 {
 	private:
 		GraphType type;
-		std::vector<gSpace::Vertex*> vertices;
+		std::vector<gSpace::Vertex> vertices;
+		std::vector<gSpace::Edge> edges;
 	public:
-		Graph()
-		{
-			type = DIRECTED;	
-		}
-		Graph(GraphType typeX)
-		{
-			type = typeX;
-		}
+		Graph() : type(DIRECTED) {}
+		Graph(GraphType typeX) : type(typeX) {}
+		void addEdge(gSpace::Vertex& u, gSpace::Vertex& v, int dist);
+		std::vector<gSpace::Edge> getEdges(void);
+		std::vector<gSpace::Vertex> getVertices(void);
 		GraphType getType(void);
-		void insert(gSpace::Vertex *v);
+		void insert(gSpace::Vertex v);
 		int numVertices(void);
-		int numEdges(void);
+		int numEdges();
 };

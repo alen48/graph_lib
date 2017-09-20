@@ -15,4 +15,4 @@ graph.o : graph.h graph.cc
 	$(CC) $(VER) $(CFLAGS) graph.cc
 
 clean:
-	rm -f *.o *~ graphlib
+	rm -f *.o *~ graphlib; >logs; >outputs;
