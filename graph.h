@@ -1,5 +1,17 @@
+/*
+ * File: graph.h
+ * -------------
+ * This file contains the templates used to create graphs.
+ */
+
+
+#ifndef _graph_h
+#define _graph_h
+
 #include <iostream>
 #include <cstdio>
+#include <string>
+#include <set>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -14,6 +26,10 @@ namespace gSpace
 			std::string name;
 		public:
 			Vertex(std::string id) : name(id) {}
+			bool operator< (const gSpace::Vertex &x) const
+			{
+				return (name < x.name);
+			}
 			std::string getName(void)
 			{
 				return name;
@@ -31,6 +47,11 @@ namespace gSpace
 			{
 				distance = dist;
 			}
+			bool operator< (const gSpace::Edge &x) const
+			{
+				return (distance < x.distance);
+			}
+
 			Vertex& getSource(void)
 			{
 				return source;
@@ -50,16 +71,18 @@ class Graph
 {
 	private:
 		GraphType type;
-		std::vector<gSpace::Vertex> vertices;
-		std::vector<gSpace::Edge> edges;
+		std::set<gSpace::Vertex> vertices;
+		std::set<gSpace::Edge> edges;
 	public:
 		Graph() : type(DIRECTED) {}
 		Graph(GraphType typeX) : type(typeX) {}
-		void addEdge(gSpace::Vertex& u, gSpace::Vertex& v, int dist);
-		std::vector<gSpace::Edge> getEdges(void);
-		std::vector<gSpace::Vertex> getVertices(void);
+		void addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist);
+		std::set<gSpace::Edge> getEdges(void);
+		std::set<gSpace::Vertex> getVertices(void);
 		GraphType getType(void);
-		void insert(gSpace::Vertex v);
+		void addVertex(gSpace::Vertex v);
 		int numVertices(void);
-		int numEdges();
+		int numEdges(void);
 };
+
+#endif

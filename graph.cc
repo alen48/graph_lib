@@ -1,19 +1,28 @@
+/*
+ * File: graph.cc
+ * --------------
+ * This file contains the basic methods of a graph.
+ */
+
 #include "graph.h"
 
-void Graph::addEdge(gSpace::Vertex& u, gSpace::Vertex& v, int dist)
+void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist)
 {
+	Graph::addVertex(u);
+	Graph::addVertex(v);
 	gSpace::Edge newEdge(u, v, dist);
-	edges.push_back(newEdge);
+	edges.insert(newEdge);
 	if (type == UNDIRECTED) {
 		gSpace::Edge revEdge(v, u, dist);
-		edges.push_back(revEdge);
+		edges.insert(revEdge);
 	}
+	return;
 }
-std::vector<gSpace::Edge> Graph::getEdges(void)
+std::set<gSpace::Edge> Graph::getEdges(void)
 {
 	return edges;
 }
-std::vector<gSpace::Vertex> Graph::getVertices(void)
+std::set<gSpace::Vertex> Graph::getVertices(void)
 {
 	return vertices;
 }
@@ -22,9 +31,9 @@ GraphType Graph::getType(void)
 {
 	return type;
 }
-void Graph::insert(gSpace::Vertex v)
+void Graph::addVertex(gSpace::Vertex v)
 {       
-	vertices.push_back(v);
+	vertices.insert(v);
 }
 int Graph::numVertices(void)
 {       
