@@ -5,7 +5,7 @@
  */
 
 #ifndef _main_h
-#define _graph_h
+#define _main_h
 
 #include <fstream>
 std::ofstream logFile("logs");
