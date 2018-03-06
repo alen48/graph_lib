@@ -4,8 +4,8 @@
  * This file includes all headers required to execute main.cc successfully.
  */
 
-#ifndef _main_h
-#define _graph_h
+#ifndef _main_h_
+#define _graph_h_
 
 #include <fstream>
 std::ofstream logFile("logs");

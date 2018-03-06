@@ -5,8 +5,8 @@
  */
 
 
-#ifndef _graph_h
-#define _graph_h
+#ifndef _graph_h_
+#define _graph_h_
 
 #include <iostream>
 #include <cstdio>
