@@ -8,6 +8,11 @@
 
 void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist)
 {
+	if (Graph::findEdge(u, v)) {
+		cout << "\nEdge already exist between " << u.getName() << " and " << v.getName();
+		return;
+	}
+	
 	Graph::addVertex(u);
 	Graph::addVertex(v);
 	gSpace::Edge newEdge(u, v, dist);
@@ -16,8 +21,20 @@ void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist)
 		gSpace::Edge revEdge(v, u, dist);
 		edges.insert(revEdge);
 	}
+#ifdef DEBUG
+	cout << "\nEdge added between " << u.getName() << " and " << v.getName();
+#endif	
 	return;
 }
+
+int Graph::findEdge(gSpace::Vertex u, gSpace::Vertex v)
+{
+	std::set <gSpace::Edge> edges = Graph::getEdges();
+	for (std::set <gSpace::Edge>::iterator it = edges.begin(); it != edges.end(); it++) {
+		
+	}
+}
+
 std::set<gSpace::Edge> Graph::getEdges(void)
 {
 	return edges;
