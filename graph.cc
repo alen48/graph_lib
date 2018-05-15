@@ -6,7 +6,7 @@
 
 #include "graph.h"
 
-void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist)
+void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist, int level)
 {
 	if (Graph::findEdge(u, v)) {
 		cout << "\nEdge already exist between " << u.getName() << " and " << v.getName();
@@ -15,10 +15,10 @@ void Graph::addEdge(gSpace::Vertex u, gSpace::Vertex v, int dist)
 	
 	Graph::addVertex(u);
 	Graph::addVertex(v);
-	gSpace::Edge newEdge(u, v, dist);
+	gSpace::Edge newEdge(u, v, dist, level);
 	edges.insert(newEdge);
 	if (type == UNDIRECTED) {
-		gSpace::Edge revEdge(v, u, dist);
+		gSpace::Edge revEdge(v, u, dist, level);
 		edges.insert(revEdge);
 	}
 #ifdef DEBUG
