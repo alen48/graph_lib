@@ -12,8 +12,8 @@ int main()
 	Graph g(UNDIRECTED);
 	gSpace::Vertex v1 = gSpace::Vertex("Bombay");
 	gSpace::Vertex v2 = gSpace::Vertex("Delhi");
-	g.addEdge(v1, v2, 100);
-//	g.addEdge("Culcutta", "Madras", 200);
+	g.addEdge(v1, v2, 100, 0);
+//	g.addEdge("Culcutta", "Madras", 200, 0);
 	logFile << "Edge added between " << v1.getName() << " and " << v2.getName() << "\n";
 
 	outFile << "Type: " << g.getType() << "\n";
