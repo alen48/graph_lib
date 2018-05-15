@@ -16,7 +16,7 @@
 #include <string>
 #include <algorithm>
 
-enum GraphType {UNDIRECTED, DIRECTED};
+enum GraphType {UNDIRECTED, DIRECTED, MULTI};
 
 namespace gSpace
 {
