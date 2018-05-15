@@ -41,11 +41,13 @@ namespace gSpace
 		private:
 			Vertex& source;
 			Vertex& destination;
-			int distance;
+			int distance; // distance or weight of the edge
+			int level; // for multigraph support
 		public:
-			Edge(Vertex& v1, Vertex& v2, int dist) : source(v1), destination(v2)
+			Edge(Vertex& v1, Vertex& v2, int dist, int lev) : source(v1), destination(v2)
 			{
 				distance = dist;
+				level = lev;
 			}
 			bool operator< (const gSpace::Edge &x) const
 			{
@@ -63,6 +65,10 @@ namespace gSpace
 			int getDistance(void)
 			{
 				return distance;
+			}
+			int getLevel(void)
+			{
+				return level;
 			}
 	};
 }
